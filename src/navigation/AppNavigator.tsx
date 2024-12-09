@@ -6,7 +6,6 @@ import HomeScreen from '../screens/HomeScreen';
 import CircumstancesScreen from '../screens/CircumstancesScreen';
 import NewConstatScreen from '../screens/NewConstatScreen';
 import GenerateQRScreen from '../screens/GenerateQRScreen';
-//import ScanQRScreen from '../screens/ScanQRScreen';
 import DamageScreen from '../screens/DamageScreen';
 import SketchScreen from '../screens/SketchScreen';
 import RecapitulatifScreen from '../screens/RecapitulatifScreen';
@@ -17,13 +16,12 @@ import { Accident, Constat } from '../types';
  
 export type RootStackParamList = {
   Home: undefined;
-  GenerateQRInitial: undefined;
-  NewConstat: { constatId: string };
+  GenerateQR: { constatId: string };
+  NewConstat: undefined;
   ScanQR: undefined;
   Circumstances: { constat: Partial<Constat> };
   Damage: { constat: Constat };
   Sketch: { constat: Constat };
-  GenerateQR: { constat: Constat };
   Recapitulatif: { constat: Constat };
  };
 
@@ -47,12 +45,17 @@ const AppNavigator = () => {
         <Stack.Screen 
           name="Home" 
           component={HomeScreen} 
-          options={{ title: 'E-Constat' }}
+          options={{ title: 'Accueil' }}
         />
-                <Stack.Screen 
+        <Stack.Screen 
+          name="GenerateQR" 
+          component={GenerateQRScreen}
+          options={{ title: 'Code du constat' }}
+        />
+        <Stack.Screen 
           name="NewConstat" 
           component={NewConstatScreen}
-          options={{ title: 'Nouveau Constat' }}
+          options={{ title: 'Nouveau constat' }}
         />
 
         <Stack.Screen 
@@ -61,14 +64,9 @@ const AppNavigator = () => {
           options={{ title: 'Circonstances' }}
         />
         <Stack.Screen 
-          name="GenerateQRInitial" 
-          component={GenerateQRScreen}
-          options={{ title: 'Code du constat' }}
-        />
-        <Stack.Screen 
           name="Damage" 
           component={DamageScreen}
-          options={{ title: 'Dégâts Apparents' }}
+          options={{ title: 'Dommages' }}
         />
         <Stack.Screen 
          name="Sketch" 

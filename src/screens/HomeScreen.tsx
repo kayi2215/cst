@@ -16,7 +16,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       <View style={styles.buttonContainer}>
         <Button
           mode="contained"
-          onPress={() => navigation.navigate('GenerateQRInitial')}
+          onPress={() => navigation.navigate('NewConstat')}
           style={styles.button}
         >
           Initier un constat

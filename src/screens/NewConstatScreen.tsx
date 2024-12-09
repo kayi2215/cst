@@ -9,14 +9,14 @@ import type { RouteProp } from '@react-navigation/native';
 
 type NewConstatScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'NewConstat'>;
-  route: RouteProp<RootStackParamList, 'NewConstat'>;
 };
 
-const NewConstatScreen = ({ navigation, route }: NewConstatScreenProps) => {
-  const { constatId } = route.params || { constatId: Date.now().toString() };
-  
+const NewConstatScreen: React.FC<NewConstatScreenProps> = ({ navigation }) => {
   const [constat, setConstat] = useState<Partial<Constat>>({
-    id: constatId,
+    id: Date.now().toString(),
+    created: new Date().toISOString(),
+    modified: new Date().toISOString(),
+    initiator: 'A',
     status: 'draft',
     vehicleA: {
       brand: '',
@@ -29,7 +29,7 @@ const NewConstatScreen = ({ navigation, route }: NewConstatScreenProps) => {
         lastName: '',
         address: '',
         licenseNumber: '',
-      },
+      }
     },
     accident: {
       date: new Date().toISOString().split('T')[0],
@@ -42,13 +42,7 @@ const NewConstatScreen = ({ navigation, route }: NewConstatScreenProps) => {
   });
 
   const handleSubmit = () => {
-    const updatedConstat = {
-      ...constat,
-      created: new Date().toISOString(),
-      modified: new Date().toISOString(),
-      initiator: 'A' // ou une valeur unique pour identifier l'initiateur
-    };
-    navigation.navigate('Circumstances', { constat: updatedConstat });
+    navigation.navigate('Circumstances', { constat });
   };
 
   return (
