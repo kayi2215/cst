@@ -41,12 +41,12 @@ const SketchScreen: React.FC<SketchScreenProps> = ({ route, navigation }) => {
   const handleOK = async (signature: string) => {
     console.log("Signature valide reçue");
     try {
-      const base64Data = signature;
+      // Ne pas modifier le format de la signature
       const updatedConstat = {
         ...constat,
         accident: {
           ...constat.accident,
-          sketch: base64Data
+          sketch: signature
         }
       };
       setConstat(updatedConstat);

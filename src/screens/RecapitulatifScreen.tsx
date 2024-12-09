@@ -22,6 +22,8 @@ export const RecapitulatifScreen: React.FC<Props> = ({ navigation, route }) => {
   const { constat } = route.params;
   const theme = useTheme();
 
+  console.log("Sketch data:", constat.accident.sketch?.substring(0, 100));
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.section}>
@@ -68,7 +70,10 @@ export const RecapitulatifScreen: React.FC<Props> = ({ navigation, route }) => {
         <Text style={styles.sectionTitle}>Croquis de l'accident</Text>
         {constat.accident.sketch && (
           <Image
-            source={{ uri: `data:image/png;base64,${constat.accident.sketch}` }}
+            source={{ uri: constat.accident.sketch.startsWith('data:') 
+              ? constat.accident.sketch 
+              : `data:image/png;base64,${constat.accident.sketch}` 
+            }}
             style={styles.sketch}
             resizeMode="contain"
           />
