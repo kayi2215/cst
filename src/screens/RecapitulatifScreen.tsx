@@ -82,9 +82,7 @@ export const RecapitulatifScreen: React.FC<Props> = ({ navigation, route }) => {
 
       <Button 
         mode="contained" 
-        onPress={() => navigation.navigate('GenerateQR', { constat })}
-        style={styles.button}
-      >
+        onPress={() => navigation.navigate('GenerateQR', { constatId: constat.id })}      >
         Générer QR Code
       </Button>
     </ScrollView>

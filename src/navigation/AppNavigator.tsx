@@ -17,13 +17,12 @@ import { Accident, Constat } from '../types';
  
 export type RootStackParamList = {
   Home: undefined;
-  GenerateQRInitial: undefined;
+  GenerateQR: { constatId: string };
   NewConstat: { constatId: string };
   ScanQR: undefined;
   Circumstances: { constat: Partial<Constat> };
   Damage: { constat: Constat };
   Sketch: { constat: Constat };
-  GenerateQR: { constat: Constat };
   Recapitulatif: { constat: Constat };
  };
 
@@ -49,7 +48,12 @@ const AppNavigator = () => {
           component={HomeScreen} 
           options={{ title: 'E-Constat' }}
         />
-                <Stack.Screen 
+        <Stack.Screen 
+          name="GenerateQR" 
+          component={GenerateQRScreen}
+          options={{ title: 'Code du constat' }}
+        />
+        <Stack.Screen 
           name="NewConstat" 
           component={NewConstatScreen}
           options={{ title: 'Nouveau Constat' }}
@@ -59,11 +63,6 @@ const AppNavigator = () => {
           name="Circumstances" 
           component={CircumstancesScreen}
           options={{ title: 'Circonstances' }}
-        />
-        <Stack.Screen 
-          name="GenerateQRInitial" 
-          component={GenerateQRScreen}
-          options={{ title: 'Code du constat' }}
         />
         <Stack.Screen 
           name="Damage" 

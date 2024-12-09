@@ -4,23 +4,25 @@ import { View, StyleSheet, Platform } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import QRCode from 'react-native-qrcode-svg';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/AppNavigator';
 
-type GenerateQRScreenProps = {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'GenerateQRInitial'>;
+type Props = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'GenerateQR'>;
+  route: RouteProp<RootStackParamList, 'GenerateQR'>;
 };
 
-const GenerateQRScreen = ({ navigation }: GenerateQRScreenProps) => {
-  const constatId = Date.now().toString();
+const GenerateQRScreen = ({ navigation, route }: Props) => {
+  const { constatId } = route.params;
 
   // Créer un objet avec les informations pertinentes
   const qrData = {
     constatId: constatId,
     type: 'e-constat',
-    initiator: true,
     created: new Date().toISOString(),
     status: 'pending'
   };
+
   const handleContinue = () => {
     navigation.navigate('NewConstat', { constatId });
   };
@@ -36,7 +38,7 @@ const GenerateQRScreen = ({ navigation }: GenerateQRScreenProps) => {
       
       <View style={styles.qrContainer}>
         <QRCode
-          value={JSON.stringify(qrData)}  // Convertir l'objet en string JSON
+          value={JSON.stringify(qrData)}
           size={200}
           backgroundColor="white"
           color="black"
