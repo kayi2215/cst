@@ -3,9 +3,10 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
 type HomeScreenProps = {
-  navigation: NativeStackNavigationProp<any, 'Home'>;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
 };
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
@@ -15,7 +16,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       <View style={styles.buttonContainer}>
         <Button
           mode="contained"
-          onPress={() => navigation.navigate('NewConstat')}
+          onPress={() => navigation.navigate('GenerateQRInitial')}
           style={styles.button}
         >
           Initier un constat

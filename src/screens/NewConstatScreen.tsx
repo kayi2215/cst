@@ -1,11 +1,22 @@
+// src/screens/NewConstatScreen.tsx
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { Button, TextInput, Text } from 'react-native-paper';
 import { Constat } from '../types';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/AppNavigator';
+import type { RouteProp } from '@react-navigation/native';
 
-const NewConstatScreen = ({ navigation }: any) => {
+type NewConstatScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'NewConstat'>;
+  route: RouteProp<RootStackParamList, 'NewConstat'>;
+};
+
+const NewConstatScreen = ({ navigation, route }: NewConstatScreenProps) => {
+  const { constatId } = route.params || { constatId: Date.now().toString() };
+  
   const [constat, setConstat] = useState<Partial<Constat>>({
-    id: Date.now().toString(),
+    id: constatId,
     status: 'draft',
     vehicleA: {
       brand: '',
