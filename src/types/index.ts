@@ -1,3 +1,5 @@
+// src/types/index.ts
+
 export interface Vehicle {
   brand: string;
   model: string;
