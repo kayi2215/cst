@@ -13,6 +13,14 @@ type GenerateQRScreenProps = {
 const GenerateQRScreen = ({ navigation }: GenerateQRScreenProps) => {
   const constatId = Date.now().toString();
 
+  // Créer un objet avec les informations pertinentes
+  const qrData = {
+    constatId: constatId,
+    type: 'e-constat',
+    initiator: true,
+    created: new Date().toISOString(),
+    status: 'pending'
+  };
   const handleContinue = () => {
     navigation.navigate('NewConstat', { constatId });
   };
@@ -28,7 +36,7 @@ const GenerateQRScreen = ({ navigation }: GenerateQRScreenProps) => {
       
       <View style={styles.qrContainer}>
         <QRCode
-          value={constatId}
+          value={JSON.stringify(qrData)}  // Convertir l'objet en string JSON
           size={200}
           backgroundColor="white"
           color="black"
