@@ -9,6 +9,7 @@ import GenerateQRScreen from '../screens/GenerateQRScreen';
 //import ScanQRScreen from '../screens/ScanQRScreen';
 import DamageScreen from '../screens/DamageScreen';
 import SketchScreen from '../screens/SketchScreen';
+import RecapitulatifScreen from '../screens/RecapitulatifScreen';
 import { Accident, Constat } from '../types';
 
 // Définissez les types pour vos routes
@@ -20,9 +21,10 @@ export type RootStackParamList = {
   NewConstat: { constatId: string };
   ScanQR: undefined;
   Circumstances: { constat: Partial<Constat> };
-  Damage: { constat: Omit<Constat, 'accident'> & { accident: Partial<Accident> } };
-  Sketch: { constat: Omit<Constat, 'accident'> & { accident: Partial<Accident> } };
+  Damage: { constat: Constat };
+  Sketch: { constat: Constat };
   GenerateQR: { constat: Constat };
+  Recapitulatif: { constat: Constat };
  };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -72,6 +74,11 @@ const AppNavigator = () => {
          name="Sketch" 
          component={SketchScreen}
          options={{ title: 'Croquis' }}
+        />
+        <Stack.Screen 
+         name="Recapitulatif" 
+         component={RecapitulatifScreen}
+         options={{ title: 'Récapitulatif' }}
         />
         {/* Les autres écrans seront ajoutés ici au fur et à mesure */}
       </Stack.Navigator>
