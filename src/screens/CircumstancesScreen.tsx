@@ -18,7 +18,6 @@ const CircumstancesScreen = ({ route, navigation }: any) => {
   };
 
   const handleSubmit = () => {
-    // Update constat with selected circumstances
     const updatedConstat = {
       ...constat,
       accident: {
@@ -26,7 +25,7 @@ const CircumstancesScreen = ({ route, navigation }: any) => {
         circumstances: selectedCircumstances,
       },
     };
-    navigation.navigate('DamageScreen', { constat: updatedConstat });
+    navigation.navigate('Damage', { constat: updatedConstat });
   };
 
   return (

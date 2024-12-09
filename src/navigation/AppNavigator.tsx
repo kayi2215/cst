@@ -7,6 +7,7 @@ import CircumstancesScreen from '../screens/CircumstancesScreen';
 import NewConstatScreen from '../screens/NewConstatScreen';
 import GenerateQRScreen from '../screens/GenerateQRScreen';
 //import ScanQRScreen from '../screens/ScanQRScreen';
+import DamageScreen from '../screens/DamageScreen';
 
 // Définissez les types pour vos routes
 export type RootStackParamList = {
@@ -14,10 +15,19 @@ export type RootStackParamList = {
     NewConstat: { constatId: string };  // Modifié pour inclure constatId
     ScanQR: undefined;
     Circumstances: { constat: any };
-    Damage: { constat: any };
-    Sketch: { constat: any };
     GenerateQR: { constat: any };
     GenerateQRInitial: undefined;
+
+    Damage: { 
+      constat: {
+        accident: {
+          damages?: string;
+        };
+      }; 
+    };
+    Sketch: {
+      constat: any; // Vous pouvez typer ceci plus précisément selon vos besoins
+    };
   };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -57,6 +67,11 @@ const AppNavigator = () => {
           name="GenerateQRInitial" 
           component={GenerateQRScreen}
           options={{ title: 'Code du constat' }}
+        />
+        <Stack.Screen 
+          name="Damage" 
+          component={DamageScreen}
+          options={{ title: 'Dégâts Apparents' }}
         />
         {/* Les autres écrans seront ajoutés ici au fur et à mesure */}
       </Stack.Navigator>
