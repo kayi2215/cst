@@ -75,6 +75,7 @@ const DamageScreen: React.FC<Props> = ({ route, navigation }) => {
           points: damages.selectedPoints,
           description: damages.description,
         }),
+        sketch: '' // Ajout du champ sketch
       },
     };
     navigation.navigate('Sketch', { constat: updatedConstat });
